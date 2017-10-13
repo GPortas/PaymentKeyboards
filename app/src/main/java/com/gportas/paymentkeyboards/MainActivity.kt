@@ -3,6 +3,8 @@ package com.gportas.paymentkeyboards
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardFragment
+import kotlinx.android.synthetic.main.activity_main.*
+import rx.Observer
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,5 +17,22 @@ class MainActivity : AppCompatActivity() {
         if (fm != null && fragment != null) {
             fm.beginTransaction().replace(R.id.frametest, fragment).commit()
         }
+
+        val firstObserver = object : Observer<String> {
+
+            override fun onCompleted() {
+
+            }
+
+            override fun onError(e: Throwable) {
+
+            }
+
+            override fun onNext(text: String) {
+                textView.setText(text)
+            }
+        }
+
+        fragment.setObserver(firstObserver)
     }
 }

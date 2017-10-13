@@ -6,6 +6,8 @@ import android.view.View
 import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import kotlinx.android.synthetic.main.fragment_expiration_date_keyboard.*
+import rx.Observable
+import rx.Observer
 import java.util.*
 
 /**
@@ -16,11 +18,20 @@ class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val p
 
     override val fragmentLayout: Int = R.layout.fragment_expiration_date_keyboard
 
-    private lateinit var selectedMonth : String
-    private lateinit var selectedYear : String
+    private var selectedMonth : String? = null
+    private var selectedYear : String? = null
 
     private var currentYearTextViewSelected: TextView? = null
     private var currentMonthTextViewSelected: TextView? = null
+
+    private var observers = arrayListOf<Observer<String>>()
+
+    private val keyboardObservable = Observable.create(
+            Observable.OnSubscribe<String> { sub ->
+                sub.onNext(selectedMonth + "/" + selectedYear)
+                sub.onCompleted()
+            }
+    )
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -83,6 +94,7 @@ class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val p
         seTextViewAsSelected(monthTextView)
         selectedMonth = monthTextView.text.toString()
         currentMonthTextViewSelected = monthTextView
+        onDateChanged()
     }
 
     private fun onYearSelected(yearTextView: TextView) {
@@ -90,6 +102,7 @@ class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val p
         seTextViewAsSelected(yearTextView)
         selectedYear = yearTextView.text.toString()
         currentYearTextViewSelected = yearTextView
+        onDateChanged()
     }
 
     private fun seTextViewAsSelected(textView: TextView?) {
@@ -100,5 +113,17 @@ class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val p
     private fun seTextViewAsUnselected(textView: TextView?) {
         textView?.setBackgroundColor(ContextCompat.getColor(context, primaryColor))
         textView?.setTextColor(ContextCompat.getColor(context, primaryTextColor))
+    }
+
+    private fun onDateChanged() {
+        if(selectedMonth != null && selectedYear != null) {
+            for (observer in observers) {
+                keyboardObservable.subscribe(observer)
+            }
+        }
+    }
+
+    fun setObserver(observer : Observer<String>) {
+        observers.add(observer)
     }
 }
