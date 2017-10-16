@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardFragment
-import com.gportas.paymentkeyboards.fragments.IKeyboardOpener
+import com.gportas.paymentkeyboards.fragments.IKeyboardManager
 import com.gportas.paymentkeyboards.listeners.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * for testing purpose
  */
 
-class MainActivity : IKeyboardOpener, AppCompatActivity() {
+class MainActivity : IKeyboardManager, AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,12 +24,19 @@ class MainActivity : IKeyboardOpener, AppCompatActivity() {
                 textView.setText(newDate)
             }
         })
-
-        openKeyBoard(this, fragment, frametest.id)
-
+        showButton.setOnClickListener {
+            openKeyboard(this, fragment, frametest.id)
+        }
+        hideButton.setOnClickListener{
+            hideKeyboard(this,frametest.id)
+        }
     }
 
-    override fun openKeyBoard(activity: AppCompatActivity, keyboard: ExpirationDateKeyboardFragment, frameLayoutResId: Int) {
-        super.openKeyBoard(activity, keyboard, frameLayoutResId)
+    override fun openKeyboard(activity: AppCompatActivity, keyboard: ExpirationDateKeyboardFragment, frameLayoutResId: Int) {
+        super.openKeyboard(activity, keyboard, frameLayoutResId)
+    }
+
+    override fun hideKeyboard(activity: AppCompatActivity, frameLayoutResId: Int) {
+        super.hideKeyboard(activity, frameLayoutResId)
     }
 }

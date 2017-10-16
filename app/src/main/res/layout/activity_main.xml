@@ -17,4 +17,16 @@
         android:layout_height="wrap_content"
         android:text="TextView" />
 
+    <Button
+        android:id="@+id/showButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SHOW KEYBOARD" />
+
+    <Button
+        android:id="@+id/hideButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="HIDE KEYBOARD" />
+
 </LinearLayout>
