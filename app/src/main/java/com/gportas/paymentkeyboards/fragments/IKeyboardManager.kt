@@ -9,7 +9,10 @@ import com.gportas.paymentkeyboards.R
 
 interface IKeyboardManager {
 
+    var isKeyboardOpened: Boolean
+
     fun openKeyboard(activity: AppCompatActivity, keyboard: ExpirationDateKeyboardFragment, frameLayoutResId: Int) {
+        isKeyboardOpened = true
         val fm = activity.supportFragmentManager
         val transaction = fm.beginTransaction()
         transaction.setCustomAnimations(R.anim.keyboard_slide_in_up, R.anim.keyboard_slide_out_up)
@@ -17,8 +20,10 @@ interface IKeyboardManager {
     }
 
     fun hideKeyboard(activity: AppCompatActivity, frameLayoutResId: Int){
+        if(!isKeyboardOpened) return
         val fm = activity.supportFragmentManager
         val transaction = fm.beginTransaction()
         transaction.remove(fm.findFragmentById(frameLayoutResId)).commit()
+        isKeyboardOpened = false
     }
 }
