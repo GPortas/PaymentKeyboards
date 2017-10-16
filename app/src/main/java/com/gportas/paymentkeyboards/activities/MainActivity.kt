@@ -1,18 +1,18 @@
-package com.gportas.paymentkeyboards
+package com.gportas.paymentkeyboards.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardFragment
-import com.gportas.paymentkeyboards.fragments.RxExpirationDateKeyboardFragment
+import com.gportas.paymentkeyboards.fragments.IKeyboardOpener
 import com.gportas.paymentkeyboards.listeners.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
-import rx.Observer
 
 /**
  * for testing purpose
  */
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : IKeyboardOpener, AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,24 +24,12 @@ class MainActivity : AppCompatActivity() {
                 textView.setText(newDate)
             }
         })
-        val fm = supportFragmentManager
-        if (fm != null && fragment != null) {
-            fm.beginTransaction().replace(R.id.frametest, fragment).commit()
-        }
 
-        val firstObserver = object : Observer<String> {
+        openKeyBoard(this, fragment, frametest.id)
 
-            override fun onCompleted() {
+    }
 
-            }
-
-            override fun onError(e: Throwable) {
-
-            }
-
-            override fun onNext(text: String) {
-                textView.setText(text)
-            }
-        }
+    override fun openKeyBoard(activity: AppCompatActivity, keyboard: ExpirationDateKeyboardFragment, frameLayoutResId: Int) {
+        super.openKeyBoard(activity, keyboard, frameLayoutResId)
     }
 }
