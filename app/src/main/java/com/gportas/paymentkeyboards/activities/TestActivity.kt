@@ -4,7 +4,7 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragments.BaseKeyboardFragment
-import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardKeyboardFragment
+import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardFragment
 import com.gportas.paymentkeyboards.fragments.IKeyboardManager
 import com.gportas.paymentkeyboards.fragments.NumericKeyboardKeyboardFragment
 import com.gportas.paymentkeyboards.listeners.DateChangedListener
@@ -22,7 +22,7 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       val fragment1 = ExpirationDateKeyboardKeyboardFragment(20, R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.white)
+       val fragment1 = ExpirationDateKeyboardFragment(20, R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.white)
         fragment1.setDateChangedListener(object : DateChangedListener() {
             override fun onDateChanged(newDate: String) {
                 textView.setText(newDate)
