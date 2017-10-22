@@ -9,6 +9,7 @@ import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
 import android.graphics.drawable.StateListDrawable
+import com.gportas.paymentkeyboards.listeners.CreditCardNumberListener
 
 
 /**
@@ -16,6 +17,8 @@ import android.graphics.drawable.StateListDrawable
  */
 
 class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
+
+    private var listener : CreditCardNumberListener? = null
 
     override val fragmentLayout: Int = R.layout.fragment_numeric_keyboard
 
@@ -71,7 +74,11 @@ class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, privat
         //todo
     }
 
+    fun setDateChangedListener(listener: CreditCardNumberListener) {
+        this.listener = listener
+    }
+
     private fun onCreditCardNumberChanged() {
-        //todo
+        //check credit card type and call correct listener method
     }
 }
