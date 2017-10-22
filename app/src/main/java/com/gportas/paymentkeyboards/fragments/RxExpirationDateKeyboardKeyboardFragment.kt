@@ -7,7 +7,7 @@ import rx.Observer
  * Created by guillermo on 13/10/17.
  */
 
-class RxExpirationDateKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseExpirationDateKeyboardFragment(yearsNumber, primaryColorResId, secondaryColorResId, primaryTextColorResId, secondaryTextColorResId) {
+class RxExpirationDateKeyboardKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseExpirationDateKeyboardKeyboardFragment(yearsNumber, primaryColorResId, secondaryColorResId, primaryTextColorResId, secondaryTextColorResId) {
 
     private var observers = arrayListOf<Observer<String>>()
 

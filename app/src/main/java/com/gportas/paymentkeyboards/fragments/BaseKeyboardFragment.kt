@@ -10,7 +10,7 @@ import android.view.ViewGroup
  * Created by guillermo on 13/10/17.
  */
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseKeyboardFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater!!.inflate(fragmentLayout, container, false)

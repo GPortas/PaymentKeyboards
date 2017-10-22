@@ -11,7 +11,7 @@ interface IKeyboardManager {
 
     var isKeyboardOpened: Boolean
 
-    fun openKeyboard(activity: AppCompatActivity, keyboard: ExpirationDateKeyboardFragment, frameLayoutResId: Int) {
+    fun openKeyboard(activity: AppCompatActivity, keyboard: BaseKeyboardFragment, frameLayoutResId: Int) {
         isKeyboardOpened = true
         val fm = activity.supportFragmentManager
         val transaction = fm.beginTransaction()

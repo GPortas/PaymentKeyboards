@@ -3,6 +3,7 @@ package com.gportas.paymentkeyboards.fragments
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import kotlinx.android.synthetic.main.fragment_expiration_date_keyboard.*
@@ -12,7 +13,7 @@ import java.util.*
  * Created by guillermo on 14/10/17.
  */
 
-abstract class BaseExpirationDateKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseFragment() {
+abstract class BaseExpirationDateKeyboardKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
     override val fragmentLayout: Int = R.layout.fragment_expiration_date_keyboard
 
@@ -31,36 +32,28 @@ abstract class BaseExpirationDateKeyboardFragment(private val yearsNumber: Int, 
         keyboard_root_layout.setBackgroundColor(ContextCompat.getColor(context, primaryColorResId))
         keyboard_month_title.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
         keyboard_year_title.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-        setMonths()
-        setYears()
+        initializeMonths()
+        initializeYears()
     }
 
-    private fun setMonths() {
-        for (i in 0..2) {
-            val firstRowMonthTextView = keyboard_first_row_month_layout.getChildAt(i) as TextView
-            firstRowMonthTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-            firstRowMonthTextView.setOnClickListener {
-                onMonthSelected(firstRowMonthTextView)
-            }
-            val secondRowMonthTextView = keyboard_second_row_month_layout.getChildAt(i) as TextView
-            secondRowMonthTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-            secondRowMonthTextView.setOnClickListener {
-                onMonthSelected(secondRowMonthTextView)
-            }
-            val thirdRowMonthTextView = keyboard_third_row_month_layout.getChildAt(i) as TextView
-            thirdRowMonthTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-            thirdRowMonthTextView.setOnClickListener {
-                onMonthSelected(thirdRowMonthTextView)
-            }
-            val fourthRowMonthTextView = keyboard_fourth_row_month_layout.getChildAt(i) as TextView
-            fourthRowMonthTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-            fourthRowMonthTextView.setOnClickListener {
-                onMonthSelected(fourthRowMonthTextView)
-            }
+    private fun initializeMonths() {
+        for (column in 0..2) {
+            initializeMonthButton(column, keyboard_first_row_month_layout)
+            initializeMonthButton(column, keyboard_second_row_month_layout)
+            initializeMonthButton(column, keyboard_third_row_month_layout)
+            initializeMonthButton(column, keyboard_fourth_row_month_layout)
         }
     }
 
-    private fun setYears() {
+    private fun initializeMonthButton(column: Int, viewGroup: ViewGroup) {
+        val monthTextView = viewGroup.getChildAt(column) as TextView
+        monthTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
+        monthTextView.setOnClickListener {
+            onMonthSelected(monthTextView)
+        }
+    }
+
+    private fun initializeYears() {
         val currentYear = Calendar.getInstance().get(Calendar.YEAR)
         for (i in 0..yearsNumber - 1) {
             val yearTextView = createYearTextView((currentYear + i).toString())
