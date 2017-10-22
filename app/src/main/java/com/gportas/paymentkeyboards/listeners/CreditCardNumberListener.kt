@@ -6,7 +6,7 @@ package com.gportas.paymentkeyboards.listeners
 
 abstract class CreditCardNumberListener {
     abstract fun onVisaCardRecognized(creditCardNumber : String)
-    abstract fun onVisaAmericanExpressRecognized(creditCardNumber : String)
+    abstract fun onAmericanExpressRecognized(creditCardNumber : String)
     abstract fun onMasterCardRecognized(creditCardNumber : String)
     abstract fun onMaestroCardRecognized(creditCardNumber : String)
 }
