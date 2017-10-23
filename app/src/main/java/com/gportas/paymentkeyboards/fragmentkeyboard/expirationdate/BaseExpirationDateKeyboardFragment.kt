@@ -14,7 +14,7 @@ import java.util.*
  * Created by guillermo on 14/10/17.
  */
 
-abstract class BaseExpirationDateKeyboardKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
+abstract class BaseExpirationDateKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
     override val fragmentLayout: Int = R.layout.fragment_expiration_date_keyboard
 

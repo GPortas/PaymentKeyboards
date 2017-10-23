@@ -19,7 +19,7 @@ import com.gportas.paymentkeyboards.validator.CreditCardValidator
  * Created by guillermo on 16/10/17.
  */
 
-class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
+class NumericKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
     private var creditCardNumberChangedListener : CreditCardNumberChangedListener? = null
     private var cardValidator: CreditCardValidator? = null
@@ -78,6 +78,13 @@ class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, privat
 
     fun setCreditCardNumberChangedListener(listener: CreditCardNumberChangedListener) {
         this.creditCardNumberChangedListener = listener
+    }
+
+    fun resetCreditCardNumber(){
+        creditCardNumber = ""
+        if(creditCardNumberChangedListener != null) {
+            creditCardNumberChangedListener!!.onCreditCardNumberChanged(creditCardNumber)
+        }
     }
 
     private fun onNumberClicked(numberTextView: TextView) {

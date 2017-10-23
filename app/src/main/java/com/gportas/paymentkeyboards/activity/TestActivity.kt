@@ -6,14 +6,12 @@ import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
 import com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate.ExpirationDateKeyboardFragment
 import com.gportas.paymentkeyboards.manager.IKeyboardManager
-import com.gportas.paymentkeyboards.fragmentkeyboard.numeric.NumericKeyboardKeyboardFragment
+import com.gportas.paymentkeyboards.fragmentkeyboard.numeric.NumericKeyboardFragment
 import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
 import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
 import com.gportas.paymentkeyboards.listener.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
-import android.R.attr.data
-
 
 
 /**
@@ -35,7 +33,7 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
             }
         })
 
-        val fragment2 = NumericKeyboardKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.colorPrimaryDark)
+        val fragment2 = NumericKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.colorPrimaryDark)
         fragment2.setCreditCardNumberChangedListener(object : CreditCardNumberChangedListener() {
             override fun onCreditCardNumberChanged(creditCardNumber: String) {
                 textView.setText(creditCardNumber)
