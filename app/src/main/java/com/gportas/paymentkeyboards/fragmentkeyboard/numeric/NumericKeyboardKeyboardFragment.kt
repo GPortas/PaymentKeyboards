@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.keyboard.numeric
+package com.gportas.paymentkeyboards.fragmentkeyboard.numeric
 
 import android.graphics.PorterDuff
 import android.os.Bundle
@@ -9,8 +9,10 @@ import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
 import android.graphics.drawable.StateListDrawable
-import com.gportas.paymentkeyboards.keyboard.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
 import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
+import com.gportas.paymentkeyboards.validator.CreditCardValidator
 
 
 /**
@@ -19,16 +21,19 @@ import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
 
 class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
-    private var listener : CreditCardTypeListener? = null
+    private var creditCardNumberChangedListener : CreditCardNumberChangedListener? = null
+    private var cardValidator: CreditCardValidator? = null
+
+    private var creditCardNumber : String = ""
 
     override val fragmentLayout: Int = R.layout.fragment_numeric_keyboard
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialize()
+        initializeViews()
     }
 
-    private fun initialize() {
+    private fun initializeViews() {
         keyboard_root_layout.setBackgroundColor(ContextCompat.getColor(context, primaryColorResId))
         initializeBackSpaceButton()
         initializeNumbers()
@@ -67,19 +72,34 @@ class NumericKeyboardKeyboardFragment(private val primaryColorResId: Int, privat
         return selector
     }
 
+    fun setCreditCardTypeListener(listener: CreditCardTypeListener) {
+        cardValidator = CreditCardValidator(listener)
+    }
+
+    fun setCreditCardNumberChangedListener(listener: CreditCardNumberChangedListener) {
+        this.creditCardNumberChangedListener = listener
+    }
+
     private fun onNumberClicked(numberTextView: TextView) {
-        onCreditCardNumberChanged()
+        creditCardNumber += numberTextView.text
+        if(creditCardNumberChangedListener != null) {
+            creditCardNumberChangedListener!!.onCreditCardNumberChanged(creditCardNumber)
+        }
+        checkIfCreditCardNumberIsValid()
     }
 
     private fun onBackSpaceClicked() {
-        //todo
+        if(creditCardNumber.equals("")) return
+        creditCardNumber = creditCardNumber.substring(0, creditCardNumber.length - 1)
+        if(creditCardNumberChangedListener != null) {
+            creditCardNumberChangedListener!!.onCreditCardNumberChanged(creditCardNumber)
+        }
+        checkIfCreditCardNumberIsValid()
     }
 
-    fun setDateChangedListener(listener: CreditCardTypeListener) {
-        this.listener = listener
-    }
-
-    private fun onCreditCardNumberChanged() {
-        //check credit card type and call correct listener method
+    private fun checkIfCreditCardNumberIsValid() {
+        if(cardValidator != null) {
+            cardValidator!!.validateNumber(creditCardNumber)
+        }
     }
 }

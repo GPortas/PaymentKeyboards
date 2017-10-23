@@ -1,7 +1,8 @@
-package com.gportas.paymentkeyboards.keyboard
+package com.gportas.paymentkeyboards.manager
 
 import android.support.v7.app.AppCompatActivity
 import com.gportas.paymentkeyboards.R
+import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
 
 /**
  * Created by guillermo on 16/10/17.

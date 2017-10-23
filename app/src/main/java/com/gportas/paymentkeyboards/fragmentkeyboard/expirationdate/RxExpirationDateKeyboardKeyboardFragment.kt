@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.keyboard.expirationdate
+package com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate
 
 import rx.Observable
 import rx.Observer

@@ -3,12 +3,18 @@ package com.gportas.paymentkeyboards.activity
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.R
-import com.gportas.paymentkeyboards.keyboard.BaseKeyboardFragment
-import com.gportas.paymentkeyboards.keyboard.expirationdate.ExpirationDateKeyboardFragment
-import com.gportas.paymentkeyboards.keyboard.IKeyboardManager
-import com.gportas.paymentkeyboards.keyboard.numeric.NumericKeyboardKeyboardFragment
+import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate.ExpirationDateKeyboardFragment
+import com.gportas.paymentkeyboards.manager.IKeyboardManager
+import com.gportas.paymentkeyboards.fragmentkeyboard.numeric.NumericKeyboardKeyboardFragment
+import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
+import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
 import com.gportas.paymentkeyboards.listener.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.Toast
+import android.R.attr.data
+
+
 
 /**
  * for testing purpose
@@ -30,9 +36,27 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
         })
 
         val fragment2 = NumericKeyboardKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.colorPrimaryDark)
+        fragment2.setCreditCardNumberChangedListener(object : CreditCardNumberChangedListener() {
+            override fun onCreditCardNumberChanged(creditCardNumber: String) {
+                textView.setText(creditCardNumber)
+            }
+        })
+        fragment2.setCreditCardTypeListener(object : CreditCardTypeListener() {
+            override fun onVisaCardRecognized(creditCardNumber: String) {
+            }
 
+            override fun onAmericanExpressCardRecognized(creditCardNumber: String) {
+                Toast.makeText(applicationContext, "Test!", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onMasterCardRecognized(creditCardNumber: String) {
+            }
+
+            override fun onMaestroCardRecognized(creditCardNumber: String) {
+            }
+        })
         showButton.setOnClickListener {
-            openKeyboard(this, fragment1, frametest.id)
+            openKeyboard(this, fragment2, frametest.id)
         }
         hideButton.setOnClickListener{
             hideKeyboard(this,frametest.id)

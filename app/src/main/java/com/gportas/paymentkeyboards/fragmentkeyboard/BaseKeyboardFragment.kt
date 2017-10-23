@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.keyboard
+package com.gportas.paymentkeyboards.fragmentkeyboard
 
 import android.os.Bundle
 import android.support.v4.app.Fragment

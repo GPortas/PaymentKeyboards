@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.keyboard.expirationdate
+package com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate
 
 import com.gportas.paymentkeyboards.listener.DateChangedListener
 
@@ -15,7 +15,7 @@ class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val p
     }
 
     override fun onDateChanged() {
-        if(selectedMonth != null && selectedYear != null) {
+        if(selectedMonth != null && selectedYear != null && listener != null) {
             listener!!.onDateChanged(selectedMonth + "/" + selectedYear)
         }
     }

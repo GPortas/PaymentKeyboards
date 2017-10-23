@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.keyboard.expirationdate
+package com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.gportas.paymentkeyboards.R
-import com.gportas.paymentkeyboards.keyboard.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
 import kotlinx.android.synthetic.main.fragment_expiration_date_keyboard.*
 import java.util.*
 
@@ -26,10 +26,10 @@ abstract class BaseExpirationDateKeyboardKeyboardFragment(private val yearsNumbe
 
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initialize()
+        initializeViews()
     }
 
-    private fun initialize() {
+    private fun initializeViews() {
         keyboard_root_layout.setBackgroundColor(ContextCompat.getColor(context, primaryColorResId))
         keyboard_month_title.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
         keyboard_year_title.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
