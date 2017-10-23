@@ -46,10 +46,11 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
             }
 
             override fun onAmericanExpressCardRecognized(creditCardNumber: String) {
-                Toast.makeText(applicationContext, "Test!", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Amex!", Toast.LENGTH_LONG).show()
             }
 
             override fun onMasterCardRecognized(creditCardNumber: String) {
+                Toast.makeText(applicationContext, "Mastercard!", Toast.LENGTH_LONG).show()
             }
 
             override fun onMaestroCardRecognized(creditCardNumber: String) {
