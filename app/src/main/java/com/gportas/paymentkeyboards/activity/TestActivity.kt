@@ -1,13 +1,13 @@
-package com.gportas.paymentkeyboards.activities
+package com.gportas.paymentkeyboards.activity
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.R
-import com.gportas.paymentkeyboards.fragments.BaseKeyboardFragment
-import com.gportas.paymentkeyboards.fragments.ExpirationDateKeyboardFragment
-import com.gportas.paymentkeyboards.fragments.IKeyboardManager
-import com.gportas.paymentkeyboards.fragments.NumericKeyboardKeyboardFragment
-import com.gportas.paymentkeyboards.listeners.DateChangedListener
+import com.gportas.paymentkeyboards.keyboard.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.keyboard.expirationdate.ExpirationDateKeyboardFragment
+import com.gportas.paymentkeyboards.keyboard.IKeyboardManager
+import com.gportas.paymentkeyboards.keyboard.numeric.NumericKeyboardKeyboardFragment
+import com.gportas.paymentkeyboards.listener.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 /**

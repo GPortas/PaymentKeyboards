@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.fragments
+package com.gportas.paymentkeyboards.keyboard
 
 import android.support.v7.app.AppCompatActivity
 import com.gportas.paymentkeyboards.R

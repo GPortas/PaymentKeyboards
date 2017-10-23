@@ -1,10 +1,10 @@
-package com.gportas.paymentkeyboards.listeners
+package com.gportas.paymentkeyboards.listener
 
 /**
  * Created by guillermo on 22/10/17.
  */
 
-abstract class CreditCardNumberListener {
+abstract class CreditCardTypeListener {
     abstract fun onVisaCardRecognized(creditCardNumber : String)
     abstract fun onAmericanExpressCardRecognized(creditCardNumber : String)
     abstract fun onMasterCardRecognized(creditCardNumber : String)

@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.listeners
+package com.gportas.paymentkeyboards.listener
 
 /**
  * Created by guillermo on 14/10/17.

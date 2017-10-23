@@ -1,4 +1,4 @@
-package com.gportas.paymentkeyboards.fragments
+package com.gportas.paymentkeyboards.keyboard.expirationdate
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.gportas.paymentkeyboards.R
+import com.gportas.paymentkeyboards.keyboard.BaseKeyboardFragment
 import kotlinx.android.synthetic.main.fragment_expiration_date_keyboard.*
 import java.util.*
 
