@@ -5,5 +5,5 @@ package com.gportas.paymentkeyboards.listener
  */
 
 abstract class CreditCardNumberChangedListener {
-    internal abstract fun onCreditCardNumberChanged(creditCardNumber : String)
+    abstract fun onCreditCardNumberChanged(creditCardNumber : String)
 }

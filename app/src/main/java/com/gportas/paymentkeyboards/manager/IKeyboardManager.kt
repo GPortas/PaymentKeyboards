@@ -12,11 +12,18 @@ interface IKeyboardManager {
 
     var isKeyboardOpened: Boolean
 
-    fun openKeyboard(activity: AppCompatActivity, keyboard: BaseKeyboardFragment, frameLayoutResId: Int) {
+    fun openKeyboardWithSlideUpAnimation(activity: AppCompatActivity, keyboard: BaseKeyboardFragment, frameLayoutResId: Int) {
         isKeyboardOpened = true
         val fm = activity.supportFragmentManager
         val transaction = fm.beginTransaction()
         transaction.setCustomAnimations(R.anim.keyboard_slide_in_up, R.anim.keyboard_slide_out_up)
+        transaction.replace(frameLayoutResId, keyboard).commit()
+    }
+
+    fun openKeyboard(activity: AppCompatActivity, keyboard: BaseKeyboardFragment, frameLayoutResId: Int) {
+        isKeyboardOpened = true
+        val fm = activity.supportFragmentManager
+        val transaction = fm.beginTransaction()
         transaction.replace(frameLayoutResId, keyboard).commit()
     }
 
