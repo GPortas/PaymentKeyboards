@@ -10,17 +10,14 @@ import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
 import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
-import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
-import com.gportas.paymentkeyboards.validator.CreditCardValidator
 import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
 
 /**
  * Created by guillermo on 24/10/17.
  */
 
-abstract class BaseNumericKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
+open class NumericKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
-    protected var cardValidator: CreditCardValidator? = null
     private var creditCardNumberChangedListener : CreditCardNumberChangedListener? = null
 
     protected var number: String = ""
@@ -82,26 +79,18 @@ abstract class BaseNumericKeyboardFragment(private val primaryColorResId: Int, p
         }
     }
 
-    private fun onNumberClicked(numberTextView: TextView) {
+    open fun onNumberClicked(numberTextView: TextView) {
         number += numberTextView.text
         if(creditCardNumberChangedListener != null) {
             creditCardNumberChangedListener!!.onCreditCardNumberChanged(number)
         }
-        checkIfNumberIsValid()
     }
 
-    private fun onBackSpaceClicked() {
+    open fun onBackSpaceClicked() {
         if(number.equals("")) return
         number = number.substring(0, number.length - 1)
         if(creditCardNumberChangedListener != null) {
             creditCardNumberChangedListener!!.onCreditCardNumberChanged(number)
         }
-        checkIfNumberIsValid()
     }
-
-    fun setCreditCardTypeListener(listener: CreditCardTypeListener) {
-        cardValidator = CreditCardValidator(listener)
-    }
-
-    abstract fun checkIfNumberIsValid()
 }
