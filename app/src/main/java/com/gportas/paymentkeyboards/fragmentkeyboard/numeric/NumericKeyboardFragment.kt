@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
-import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
+import com.gportas.paymentkeyboards.listener.DataChangedListener
 import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
 
 /**
@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
 
 open class NumericKeyboardFragment(private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseKeyboardFragment() {
 
-    private var creditCardNumberChangedListener : CreditCardNumberChangedListener? = null
+    private var dataChangedListener: DataChangedListener? = null
 
     protected var number: String = ""
 
@@ -68,29 +68,29 @@ open class NumericKeyboardFragment(private val primaryColorResId: Int, private v
         return selector
     }
 
-    fun setCreditCardNumberChangedListener(listener: CreditCardNumberChangedListener) {
-        this.creditCardNumberChangedListener = listener
+    fun setCreditCardNumberChangedListener(listener: DataChangedListener) {
+        this.dataChangedListener = listener
     }
 
     fun resetCreditCardNumber(){
         number = ""
-        if(creditCardNumberChangedListener != null) {
-            creditCardNumberChangedListener!!.onCreditCardNumberChanged(number)
+        if(dataChangedListener != null) {
+            dataChangedListener!!.onDataChanged(number)
         }
     }
 
     open fun onNumberClicked(numberTextView: TextView) {
         number += numberTextView.text
-        if(creditCardNumberChangedListener != null) {
-            creditCardNumberChangedListener!!.onCreditCardNumberChanged(number)
+        if(dataChangedListener != null) {
+            dataChangedListener!!.onDataChanged(number)
         }
     }
 
     open fun onBackSpaceClicked() {
         if(number.equals("")) return
         number = number.substring(0, number.length - 1)
-        if(creditCardNumberChangedListener != null) {
-            creditCardNumberChangedListener!!.onCreditCardNumberChanged(number)
+        if(dataChangedListener != null) {
+            dataChangedListener!!.onDataChanged(number)
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate
 
-import com.gportas.paymentkeyboards.listener.DateChangedListener
+import com.gportas.paymentkeyboards.listener.DataChangedListener
 
 /**
  * Created by guillermo on 14/10/17.
@@ -8,15 +8,15 @@ import com.gportas.paymentkeyboards.listener.DateChangedListener
 
 class ExpirationDateKeyboardFragment(private val yearsNumber: Int, private val primaryColorResId: Int, private val secondaryColorResId: Int, private val primaryTextColorResId: Int, private val secondaryTextColorResId: Int) : BaseExpirationDateKeyboardFragment(yearsNumber, primaryColorResId, secondaryColorResId, primaryTextColorResId, secondaryTextColorResId) {
 
-    private var listener : DateChangedListener? = null
+    private var listener : DataChangedListener? = null
 
-    fun setDateChangedListener(listener: DateChangedListener) {
+    fun setDateChangedListener(listener: DataChangedListener) {
         this.listener = listener
     }
 
     override fun onDateChanged() {
         if(selectedMonth != null && selectedYear != null && listener != null) {
-            listener!!.onDateChanged(selectedMonth + "/" + selectedYear)
+            listener!!.onDataChanged(selectedMonth + "/" + selectedYear)
         }
     }
 }

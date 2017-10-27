@@ -6,9 +6,8 @@ import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
 import com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate.ExpirationDateKeyboardFragment
 import com.gportas.paymentkeyboards.manager.IKeyboardManager
-import com.gportas.paymentkeyboards.listener.CreditCardNumberChangedListener
+import com.gportas.paymentkeyboards.listener.DataChangedListener
 import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
-import com.gportas.paymentkeyboards.listener.DateChangedListener
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 import com.gportas.paymentkeyboards.fragmentkeyboard.numeric.CreditCardNumberKeyboardFragment
@@ -26,16 +25,16 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
        val fragment1 = ExpirationDateKeyboardFragment(20, R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.white)
-        fragment1.setDateChangedListener(object : DateChangedListener() {
-            override fun onDateChanged(newDate: String) {
-                textView.setText(newDate)
+        fragment1.setDateChangedListener(object : DataChangedListener() {
+            override fun onDataChanged(data: String) {
+                textView.setText(data)
             }
         })
 
         val fragment2 = CreditCardNumberKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.white)
-        fragment2.setCreditCardNumberChangedListener(object : CreditCardNumberChangedListener() {
-            override fun onCreditCardNumberChanged(creditCardNumber: String) {
-                textView.setText(creditCardNumber)
+        fragment2.setCreditCardNumberChangedListener(object : DataChangedListener() {
+            override fun onDataChanged(data: String) {
+                textView.setText(data)
             }
         })
         fragment2.setCreditCardTypeListener(object : CreditCardTypeListener(){
@@ -56,7 +55,7 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
             }
         })
         showButton.setOnClickListener {
-            openKeyboard(this, fragment2, frametest.id)
+            openKeyboard(this, fragment1, frametest.id)
         }
         hideButton.setOnClickListener{
             hideKeyboard(this,frametest.id)
