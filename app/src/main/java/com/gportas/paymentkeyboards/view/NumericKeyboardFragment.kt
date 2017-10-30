@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.gportas.paymentkeyboards.R
 import com.gportas.paymentkeyboards.listeners.DataChangedListener
 import kotlinx.android.synthetic.main.fragment_numeric_keyboard.*
+import android.content.res.ColorStateList
 
 /**
  * Created by guillermo on 24/10/17.
@@ -37,6 +38,7 @@ open class NumericKeyboardFragment(private val primaryColorResId: Int, private v
     }
 
     private fun initializeBackSpaceButton() {
+        keyboard_backspace.setBackgroundDrawable(makeSelector())
         keyboard_backspace_icon.setColorFilter(ContextCompat.getColor(context, primaryTextColorResId), PorterDuff.Mode.SRC_IN)
         keyboard_backspace.setOnClickListener {
             onBackSpaceClicked()
@@ -56,17 +58,21 @@ open class NumericKeyboardFragment(private val primaryColorResId: Int, private v
 
     private fun initializeNumberButton(column: Int, viewGroup: ViewGroup) {
         val numberTextView = viewGroup.getChildAt(column) as TextView
-        numberTextView.setTextColor(ContextCompat.getColor(context, primaryTextColorResId))
-        numberTextView.setBackgroundDrawable(makeSelector(ContextCompat.getColor(context, secondaryColorResId)))
+        var themeColorStateList = ColorStateList(
+                arrayOf(intArrayOf(android.R.attr.state_pressed), intArrayOf(android.R.attr.state_enabled), intArrayOf(android.R.attr.state_focused, android.R.attr.state_pressed), intArrayOf(-android.R.attr.state_enabled), intArrayOf()),
+                intArrayOf(ContextCompat.getColor(context, secondaryTextColorResId), ContextCompat.getColor(context, primaryTextColorResId), ContextCompat.getColor(context, secondaryTextColorResId), ContextCompat.getColor(context, primaryTextColorResId), ContextCompat.getColor(context, primaryTextColorResId))
+        )
+        numberTextView.setTextColor(themeColorStateList)
+        numberTextView.setBackgroundDrawable(makeSelector())
         numberTextView.setOnClickListener {
             onNumberClicked(numberTextView)
         }
     }
 
-    private fun makeSelector(color: Int): StateListDrawable {
+    private fun makeSelector(): StateListDrawable {
         val selector = StateListDrawable()
         selector.setExitFadeDuration(400)
-        selector.addState(intArrayOf(android.R.attr.state_pressed), ColorDrawable(color))
+        selector.addState(intArrayOf(android.R.attr.state_pressed), ColorDrawable(ContextCompat.getColor(context, secondaryColorResId)))
         selector.addState(intArrayOf(), ColorDrawable(Color.TRANSPARENT))
         return selector
     }

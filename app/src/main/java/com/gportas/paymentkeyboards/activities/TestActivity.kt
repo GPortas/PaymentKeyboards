@@ -31,7 +31,7 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
             }
         })
 
-        val fragment2 = CreditCardNumberKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.white)
+        val fragment2 = CreditCardNumberKeyboardFragment(R.color.colorPrimary, R.color.colorAccent, R.color.white, R.color.material_blue_grey_800)
         fragment2.setCreditCardNumberChangedListener(object : DataChangedListener() {
             override fun onDataChanged(data: String) {
                 textView.setText(data)
