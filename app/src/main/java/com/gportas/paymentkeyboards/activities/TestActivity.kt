@@ -1,16 +1,16 @@
-package com.gportas.paymentkeyboards.activity
+package com.gportas.paymentkeyboards.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.gportas.paymentkeyboards.R
-import com.gportas.paymentkeyboards.fragmentkeyboard.BaseKeyboardFragment
-import com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate.ExpirationDateKeyboardFragment
-import com.gportas.paymentkeyboards.manager.IKeyboardManager
-import com.gportas.paymentkeyboards.listener.DataChangedListener
-import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
+import com.gportas.paymentkeyboards.view.BaseKeyboardFragment
+import com.gportas.paymentkeyboards.view.ExpirationDateKeyboardFragment
+import com.gportas.paymentkeyboards.managers.IKeyboardManager
+import com.gportas.paymentkeyboards.listeners.DataChangedListener
+import com.gportas.paymentkeyboards.listeners.CreditCardTypeListener
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
-import com.gportas.paymentkeyboards.fragmentkeyboard.numeric.CreditCardNumberKeyboardFragment
+import com.gportas.paymentkeyboards.view.CreditCardNumberKeyboardFragment
 
 /**
  * for testing purpose
@@ -38,24 +38,14 @@ class TestActivity : IKeyboardManager, AppCompatActivity() {
             }
         })
         fragment2.setCreditCardTypeListener(object : CreditCardTypeListener(){
-            override fun onVisaCardRecognized(creditCardNumber: String) {
-                Toast.makeText(applicationContext, "Visa!", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onAmericanExpressCardRecognized(creditCardNumber: String) {
-                Toast.makeText(applicationContext, "Amex!", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onMasterCardRecognized(creditCardNumber: String) {
-                Toast.makeText(applicationContext, "Mastercard!", Toast.LENGTH_LONG).show()
-            }
-
-            override fun onMaestroCardRecognized(creditCardNumber: String) {
-                Toast.makeText(applicationContext, "Maestro!", Toast.LENGTH_LONG).show()
+            override fun onCardRecognized(cardNumber: String, type: String) {
+                if(CreditCardTypeListener.TYPE_MASTERCARD == type){
+                    Toast.makeText(applicationContext, "Mastercard", Toast.LENGTH_SHORT).show()
+                }
             }
         })
         showButton.setOnClickListener {
-            openKeyboard(this, fragment1, frametest.id)
+            openKeyboard(this, fragment2, frametest.id)
         }
         hideButton.setOnClickListener{
             hideKeyboard(this,frametest.id)

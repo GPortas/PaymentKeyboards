@@ -1,8 +1,8 @@
-package com.gportas.paymentkeyboards.fragmentkeyboard.numeric
+package com.gportas.paymentkeyboards.view
 
 import android.widget.TextView
-import com.gportas.paymentkeyboards.listener.CreditCardTypeListener
-import com.gportas.paymentkeyboards.validator.CreditCardValidator
+import com.gportas.paymentkeyboards.listeners.CreditCardTypeListener
+import com.gportas.paymentkeyboards.validators.CreditCardValidator
 
 /**
  * Created by guillermo on 16/10/17.

@@ -1,6 +1,6 @@
-package com.gportas.paymentkeyboards.fragmentkeyboard.expirationdate
+package com.gportas.paymentkeyboards.view
 
-import com.gportas.paymentkeyboards.listener.DataChangedListener
+import com.gportas.paymentkeyboards.listeners.DataChangedListener
 
 /**
  * Created by guillermo on 14/10/17.
