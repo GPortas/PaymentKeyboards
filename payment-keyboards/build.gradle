@@ -38,9 +38,9 @@ ext {
     bintrayRepo = 'maven'
     bintrayName = 'payment-keyboards'
 
-    publishedGroupId = 'com.gportas.paymentkeyboards'
+    publishedGroupId = 'com.gportas'
     libraryName = 'PaymentKeyboards'
-    artifact = 'PaymentKeyboards'
+    artifact = 'payment-keyboards'
 
     libraryDescription = 'Android Library that provides animated and customizable intelligent payment keyboards'
 
