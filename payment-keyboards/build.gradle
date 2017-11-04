@@ -36,7 +36,7 @@ repositories {
 
 ext {
     bintrayRepo = 'maven'
-    bintrayName = 'PaymentKeyboards'
+    bintrayName = 'payment-keyboards'
 
     publishedGroupId = 'com.gportas.paymentkeyboards'
     libraryName = 'PaymentKeyboards'
@@ -47,7 +47,7 @@ ext {
     siteUrl = 'https://github.com/GPortas/PaymentKeyboards'
     gitUrl = 'https://github.com/GPortas/PaymentKeyboards.git'
 
-    libraryVersion = '0.9.1'
+    libraryVersion = '0.9.2'
 
     developerId = 'gportas'
     developerName = 'Guillermo Portas'
@@ -59,4 +59,4 @@ ext {
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
-apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
+apply from: 'https://raw.githubusercontent.com/GPortas/PaymentKeyboards/master/bintrayv1.gradle'
